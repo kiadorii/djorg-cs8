@@ -11,3 +11,4 @@ class Note(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     # TODO: Tagging system or categories
+    category = models.CharField(max_length=20)
