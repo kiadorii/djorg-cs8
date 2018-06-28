@@ -6,5 +6,6 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
         model = Note
         fields = ('title', 'content')
 
-class NoteViewSet(viewsets.ModelViewSet):
-    querySet = Note.objects.all()
+class NoteViewset(viewsets.ModelViewSet):
+    serializer_class = NoteSerializer
+    queryset = Note.objects.all()
