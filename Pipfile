@@ -7,6 +7,8 @@ name = "pypi"
 django = "*"
 python-decouple = "*"
 djangorestframework = "*"
+django-filter = "*"
+markdown = "*"
 
 [dev-packages]
 
