@@ -1,31 +1,31 @@
 from rest_framework import serializers, viewsets
-from .models import Note, PersonalNote
+from .models import Bookmark, PersonalBookmark
 
 # TODO: CRITICAL: Disable this or modify to only work for admin
 
-class NoteSerializer(serializers.HyperlinkedModelSerializer):
+class BookmarkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Note
+        model = Bookmark
         fields = ('title', 'content')
 
-class NoteViewset(viewsets.ModelViewSet):
-    serializer_class = NoteSerializer
-    queryset = Note.objects.all()
+class BookmarkViewset(viewsets.ModelViewSet):
+    serializer_class = BookmarkSerializer
+    queryset = Bookmark.objects.all()
 
-class PersonalNoteSerializer(serializers.HyperlinkedModelSerializer):
+class PersonalBookmarkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = PersonalNote
+        model = PersonalBookmark
         fields = ('title', 'content')
 
     def create(self, validated_data):
         # import pdb; pdb.set_trace()
         user = self.context['request'].user
-        personal_note = PersonalNote.objects.create(user=user, **validated_data)
-        return personal_note
+        personal_bookmark = PersonalBookmark.objects.create(user=user, **validated_data)
+        return personal_bookmark
 
-class PersonalNoteViewset(viewsets.ModelViewSet):
-    serializer_class = PersonalNoteSerializer
-    queryset = PersonalNote.objects.none()
+class PersonalBookmarkViewset(viewsets.ModelViewSet):
+    serializer_class = PersonalBookmarkSerializer
+    queryset = PersonalBookmark.objects.none()
 
     def get_queryset(self):
         user = self.request.user
@@ -34,4 +34,4 @@ class PersonalNoteViewset(viewsets.ModelViewSet):
             return queryset
 
         else:
-            return PersonalNote.objects.filter(user = user)
+            return PersonalBookmark.objects.filter(user = user)

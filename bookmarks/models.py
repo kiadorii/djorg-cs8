@@ -1,5 +1,6 @@
 from django.db import models
 from uuid import uuid4
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Bookmark(models.Model):
@@ -11,3 +12,7 @@ class Bookmark(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     # TODO: Tagging system or categories
+    category = models.CharField(max_length=20)
+
+class PersonalBookmark(Bookmark):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
