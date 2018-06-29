@@ -18,7 +18,7 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 from notes.api import NoteViewset, PersonalNoteViewset
 from rest_framework.authtoken import views
-from bookmarks.api import BookmarkViewset
+from bookmarks.api import BookmarkViewset, PersonalBookmarkViewset
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewset)
@@ -29,5 +29,4 @@ urlpatterns = [
     re_path(r'^api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
     path(r'api/', include(router.urls)),
-    path('bookmarks/', include('bookmarks.urls')),
 ]
